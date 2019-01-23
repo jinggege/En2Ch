@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 	//"os/exec"
 )
 
@@ -21,6 +22,11 @@ func Start(exitChan chan int) {
 
 		//c := exec.Command("cmd.exe", "/c", "cls")
 		//c.Run()
+
+		if strings.HasPrefix(input, "--close") {
+			fmt.Println("=you send close command=")
+			exitChan <- 0
+		}
 
 		res := Get(input)
 		res = Format(res)
